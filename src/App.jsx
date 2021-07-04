@@ -1,25 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Admin from './components/admin/Admin';
+import Login from './components/login/Login';
+import Navbar from './components/navbar/Navbar';
+import Reset from './components/login/Reset';
+
+import { auth } from './firebase'
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+  const [firebaseUser, setFirebaseUser] = React.useState(false)
+
+  React.useEffect(() => {
+    auth.onAuthStateChanged(user => {
+      console.log(user)
+      if (user) {
+        setFirebaseUser(user)
+      } else {
+        setFirebaseUser(null)
+      }
+    })
+
+  }, [])
+
+
+  return firebaseUser !== false ? (
+    <Router>
+      <div className="container">
+        <Navbar firebaseUser={firebaseUser} />
+        <Switch>
+          <Route path="/" exact>
+            inicio...
+          </Route>
+
+          <Route path="/login">
+            <Login />
+          </Route>
+
+          <Route path="/admin">
+            <Admin />
+          </Route>
+
+          <Route path="/reset">
+            <Reset/>
+          </Route>
+
+        </Switch>
+
+      </div>
+    </Router>
+
+  ) : (
+    <div class="d-flex justify-content-center m-5">
+      <div class="spinner-border m-4" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
     </div>
-  );
+  )
 }
 
 export default App;
