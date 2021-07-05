@@ -14,14 +14,12 @@ const Login = (props) => {
 
     const procesarDatos = e => {
         e.preventDefault()
+       
         if (!email.trim() || !pass.trim()) {
-            console.log('Ingrese Email')
-            setError('Ingrese Email')
-            return
-        }
-        if (!pass.trim()) {
-            console.log('Ingrese Password')
-            setError('Ingrese Password')
+            console.log('Ingrese Email/Contraseña')
+            setError(!email.trim() && !pass.trim() ? 'Ingrese Email y Contraseña' : (
+                !email.trim() ? 'Ingrese Email' : 'Ingrese Contraseña'
+            ))
             return
         }
         if (pass.length < 6) {
@@ -104,7 +102,7 @@ const Login = (props) => {
             <h3 className="text-center">
 
                 {
-                    esRegistro ? 'Registro de usuarios' : 'Login'
+                    esRegistro ? 'Registrar usuario' : 'Iniciar sesión'
                 }
 
             </h3>
@@ -122,14 +120,14 @@ const Login = (props) => {
                         <input
                             type="email"
                             className="form-control mb-2"
-                            placeholder="Ingrese un email"
+                            placeholder="Email"
                             onChange={e => setEmail(e.target.value)}
                             value={email}
                         />
                         <input
                             type="password"
                             className="form-control mb-2"
-                            placeholder="Ingrese un password"
+                            placeholder="Contraseña"
                             onChange={e => setPass(e.target.value)}
                             value={pass}
                         />
@@ -148,7 +146,7 @@ const Login = (props) => {
                             type='button'
                         >
                             {
-                                esRegistro ? '¿Ya estás registrado?' : '¿No tiene cuenta?'
+                                esRegistro ? 'Ingresa tu cuenta' : 'Crea una cuenta'
                             }
                         </button>
                         {
@@ -158,7 +156,7 @@ const Login = (props) => {
                                     type='button'
                                     onClick={()=>props.history.push('/reset')}
                                 >
-                                    Recuperar cotraseña
+                                    ¿Haz olvidado tu Contraseña?
                                 </button>
                                 
                             ) :null
