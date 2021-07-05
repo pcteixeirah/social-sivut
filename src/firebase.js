@@ -5,12 +5,12 @@ import 'firebase/auth'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyB9yLnCW_XVQz9osXQ9mT6uJFf85GUy1FE",
-    authDomain: "sivut-firestore.firebaseapp.com",
-    projectId: "sivut-firestore",
-    storageBucket: "sivut-firestore.appspot.com",
-    messagingSenderId: "939948001896",
-    appId: "1:939948001896:web:0d83ab30666be477c109dd"
+    apiKey: "AIzaSyChUaQPfcReEgAOpKKMDmtq1oyCileGZrc",
+    authDomain: "sivut-social.firebaseapp.com",
+    projectId: "sivut-social",
+    storageBucket: "sivut-social.appspot.com",
+    messagingSenderId: "778918135364",
+    appId: "1:778918135364:web:337393c3ed25bb4968de11"
 };
 
 
