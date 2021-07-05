@@ -1,6 +1,8 @@
 import React from 'react'
 import { auth, db } from '../../firebase'
 import { withRouter } from 'react-router-dom'
+import {Button, ButtonGroup, IconButton} from '@material-ui/core'
+import RefreshIcon from '@material-ui/icons/Refresh'
 
 const Login = (props) => {
 
@@ -131,24 +133,25 @@ const Login = (props) => {
                             onChange={e => setPass(e.target.value)}
                             value={pass}
                         />
-                        <button
-                            className="btn btn-dark btn-lg btn-block "
-                            type='submit'
-
+                        <ButtonGroup
+                            orientation="vertical"
+                            color="primary"
+                            variant="contained"
+                            aria-label="vertical outlined primary button group"
+                            fullWidth
                         >
-                            {
-                                esRegistro ? 'Registrarse' : 'Acceder'
-                            }
-                        </button>
-                        <button
-                            className="btn btn-info btn-sm btn-block"
-                            onClick={() => setEsRegistro(!esRegistro)}
-                            type='button'
-                        >
-                            {
-                                esRegistro ? 'Ingresa tu cuenta' : 'Crea una cuenta'
-                            }
-                        </button>
+                            <Button type='submit'>
+                                {
+                                    esRegistro ? 'Registrarse' : 'Acceder'
+                                }
+                            </Button>
+                            <Button onClick={() => setEsRegistro(!esRegistro)} type='button'>
+                                {
+                                    esRegistro ? 'Ingresa tu cuenta' : 'Crea una cuenta'
+                                }
+                            </Button>
+                        </ButtonGroup>
+                        
                         {
                             !esRegistro ?  (
                                 <button
@@ -159,9 +162,12 @@ const Login = (props) => {
                                     ¿Haz olvidado tu Contraseña?
                                 </button>
                                 
-                            ) :null
+                            ) : null
 
                         }
+                        {/* <IconButton aria-label="" onClick={}>
+                            <RefreshIcon/>
+                        </IconButton> */}
 
                     </form>
                 </div>
