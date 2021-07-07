@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import Admin from './components/admin/Admin';
-import Login from './components/login/Login';
-import Navbar from './components/navbar/Navbar';
-import Reset from './components/login/Reset';
+import Admin from './components/admin/Admin'
+import Login from './components/login/Login'
+import Navbar from './components/navbar/Navbar'
+import Reset from './components/login/Reset'
+import Profile from './components/admin/Profile'
 
 import { auth } from './firebase'
 
@@ -44,6 +45,10 @@ function App() {
 
           <Route path="/reset">
             <Reset/>
+          </Route>
+
+          <Route path="/profile">
+            <Profile/>
           </Route>
 
         </Switch>
