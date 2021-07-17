@@ -1,4 +1,5 @@
 import React from 'react'
+import clsx from 'clsx'
 import { NavLink } from 'react-router-dom'
 import { auth } from '../../firebase'
 import { withRouter } from 'react-router-dom'
@@ -14,7 +15,7 @@ import {
     Hidden
 } from '@material-ui/core'
 
-import SearchIcon from '@material-ui/icons/Search'
+//import SearchIcon from '@material-ui/icons/Search'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew'
 import HomeIcon from '@material-ui/icons/Home'
@@ -34,6 +35,9 @@ const useStyles = makeStyles(theme => ({
     },
     title: {
         flexGrow: 1
+    },
+    hide: {
+        display: 'none',
     },
     search: {
         position: 'relative',
@@ -83,6 +87,12 @@ const Navbar = (props) => {
             .then(() => {
                 props.history.push('/login')
             })
+    }
+
+    const [open, setOpen] = React.useState(false);
+    
+    const handleDrawerOpen = () => {
+        setOpen(true);
     }
 
     return (
