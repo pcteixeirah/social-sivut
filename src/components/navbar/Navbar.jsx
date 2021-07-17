@@ -3,15 +3,29 @@ import { NavLink } from 'react-router-dom'
 import { auth } from '../../firebase'
 import { withRouter } from 'react-router-dom'
 //import { Form, FormControl, Button } from 'react-bootstrap'
-import { AppBar, Toolbar, Typography, makeStyles, Link, InputBase, IconButton } from '@material-ui/core'
+import {
+    AppBar, 
+    Toolbar, 
+    //Typography, 
+    makeStyles, 
+    //Link, 
+    InputBase, 
+    IconButton,
+    Hidden
+} from '@material-ui/core'
 
 import SearchIcon from '@material-ui/icons/Search'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew'
 import HomeIcon from '@material-ui/icons/Home'
-import PublicIcon from '@material-ui/icons/Public'
+//import PublicIcon from '@material-ui/icons/Public'
 import EmojiEventsIcon from '@material-ui/icons/EmojiEvents'
+import FaceIcon from '@material-ui/icons/Face'
+
 import { fade } from '@material-ui/core/styles'
+import { ReactComponent as Sivut } from './assets/blocks/sivut_1.svg'
+
+import { MDBCol, MDBIcon } from "mdbreact";
 
 const useStyles = makeStyles(theme => ({
     offset: theme.mixins.toolbar,
@@ -55,7 +69,7 @@ const useStyles = makeStyles(theme => ({
         transition: theme.transitions.create('width'),
         width: '100%',
         [theme.breakpoints.up('md')]: {
-            width: '20ch',
+            width: '30ch',
         },
     },
 }))
@@ -77,16 +91,35 @@ const Navbar = (props) => {
                 <Toolbar>
                     <div className={classes.title}>
                         <div className="d-flex ">
-                            <Typography variant="h6" color="inherit">
+                            <Hidden xsDown>
                                 <NavLink to="#" className={classes.menuButton}>
                                     <IconButton aria-label="logo">
-                                        <HomeIcon fontSize="large"/>
+                                        <Sivut/>
                                     </IconButton>
                                 </NavLink>
-                                SIVUT P2P
-                            </Typography>
+                            </Hidden>
+                            <Hidden smUp>
+                                <IconButton
+                                    aria-label="openDrawer"
+                                    onClick={handleDrawerOpen}
+                                    edge="start"
+                                    className={clsx(classes.menuButton, open && classes.hide)}
+                                >
+                                    <Sivut/>
+                                </IconButton>
+                            </Hidden>
                             
-                            <div className={classes.search}>
+                            <MDBCol md="6">
+                                <div className="input-group md-form form-sm form-1 pl-0">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text gold lighten-3" id="basic-text1">
+                                            <MDBIcon className="text-black" icon="search" />
+                                        </span>
+                                    </div>
+                                    <input className="form-control my-0 py-1 text-white" type="text" placeholder="Comunidad" aria-label="search" />
+                                </div>
+                            </MDBCol>
+                            {/* <div className={classes.search}>
                                 <div className={classes.searchIcon}>
                                     <SearchIcon />
                                 </div>
@@ -98,54 +131,57 @@ const Navbar = (props) => {
                                 }}
                                 inputProps={{ 'aria-label' : 'search' }}
                                 />
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     
-                    <div >
-                        <div className="d-flex ">
-                            <NavLink to="/" exact>
-                                <IconButton aria-label="home">
-                                    <HomeIcon fontSize="large"/>
-                                </IconButton>
-                            </NavLink>
-
-                            {
-                                props.firebaseUser !== null ? (
-                                    <NavLink to="/admin">
-                                        <IconButton aria-label="admin">
-                                            <PublicIcon fontSize="large"/>
-                                        </IconButton>
-                                    </NavLink>
-                                ) : null
-                            }
-
-                            {
-                                props.firebaseUser !== null ? (
-                                    <NavLink to="/profile">
-                                        <IconButton aria-label="profile">
-                                            <EmojiEventsIcon fontSize="large"/>
-                                        </IconButton>
-                                    </NavLink>
-                                ) : null
-                            }
-
-                            {
-                                props.firebaseUser !== null ? (
-                                    <IconButton aria-label="login" onClick={() => cerrarSesion()}>
-                                        <PowerSettingsNewIcon fontSize="large"/>
+                    <Hidden xsDown>
+                        <div >
+                            <div className="d-flex ">
+                                <NavLink to="/" exact>
+                                    <IconButton aria-label="home">
+                                        <HomeIcon fontSize="large"/>
                                     </IconButton>
-                                ) : (
-                                    <NavLink to="/login">
-                                        <IconButton aria-label="login">
-                                            <AccountCircleIcon fontSize="large"/>
-                                        </IconButton>
-                                    </NavLink>
-                                )
-                            }
+                                </NavLink>
 
-                        </div>
-                    </div>
+                                {
+                                    props.firebaseUser !== null ? (
+                                        <NavLink to="/admin">
+                                            <IconButton aria-label="admin">
+                                                <EmojiEventsIcon fontSize="large"/>
+                                            </IconButton>
+                                        </NavLink>
+                                    ) : null
+                                }
+
+                                {
+                                    props.firebaseUser !== null ? (
+                                        <NavLink to="/profile">
+                                            <IconButton aria-label="profile">
+                                                <FaceIcon fontSize="large"/>  
+                                            </IconButton>
+                                        </NavLink>
+                                    ) : null
+                                }
+
+                                {
+                                    props.firebaseUser !== null ? (
+                                        <IconButton aria-label="login" onClick={() => cerrarSesion()}>
+                                            <PowerSettingsNewIcon fontSize="large"/>
+                                        </IconButton>
+                                    ) : (
+                                        <NavLink to="/login">
+                                            <IconButton aria-label="login">
+                                                <AccountCircleIcon fontSize="large"/>
+                                            </IconButton>
+                                        </NavLink>
+                                    )
+                                }
+
+                            </div>
+                        </div>              
+                    </Hidden>
+
                 </Toolbar>
             </AppBar>
 
