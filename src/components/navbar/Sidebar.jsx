@@ -1,10 +1,6 @@
 import React from 'react'
 import InboxIcon from '@material-ui/icons/MoveToInbox'
 import MailIcon from '@material-ui/icons/Mail'
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
-import ChevronRightIcon from '@material-ui/icons/ChevronRight'
-import { useTheme } from '@material-ui/core/styles'
-import clsx from 'clsx'
 import {
     Divider, 
     List, 
@@ -12,8 +8,8 @@ import {
     makeStyles, 
     ListItemIcon, 
     ListItemText, 
-    IconButton,
     Drawer,
+    Hidden,
 } from '@material-ui/core'
 
 
@@ -51,36 +47,13 @@ const useStyles = makeStyles(theme => ({
 
 //===============================================================================================================
 
-const Sidebar = () => {
+const Sidebar = (props) => {
 
     const classes = useStyles()
-    const theme = useTheme()
-    //const [state, setState] = React.useState(false)  //Doubts about intial value and suitability of the statement
-
-    // const handleDrawerOpen = () => {
-    //     setOpen(true);
-    // }
+    //const [open, setOpen] = React.useState(false)
     
-    // const handleDrawerClose = () => {
-    //     setOpen(false);
-    // };
-
-    // const toggleDrawer = (anchor, open) => (event) => {
-    //     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-    //       return;
-    //     }
-    //     setState({ ...state, [anchor]: open });
-    // };
-
     const list = () => (
-        <div
-        //   className={clsx(classes.list, {
-        //     [classes.fullList]: anchor === 'top' || anchor === 'bottom',
-        //   })}
-        //   role="presentation"
-        //   onClick={toggleDrawer(anchor, false)}
-        //   onKeyDown={toggleDrawer(anchor, false)}
-        >
+        <div>
           <List>
             {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
               <ListItem button key={text}>
@@ -103,25 +76,65 @@ const Sidebar = () => {
 
     return (
         <div>
-            <Drawer
-                className={classes.drawer}
-                variant="permanent"
-                anchor="left"
-                //open={open}
-                classes={{
-                    paper: classes.drawerPaper,
-                }}
-            >
-                {/* <div className={classes.drawerHeader}>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                    </IconButton>
-                </div>
-                <Divider/> */}
-                <List>{list()}</List>
-            </Drawer>
+            <Hidden smUp>
+                <Drawer
+                    className={classes.drawer}
+                    variant="temporary"
+                    anchor="left"
+                    open={props.open}
+                    classes={{
+                        paper: classes.drawerPaper,
+                    }}
+                >
+                    <List>{list()}</List>
+                </Drawer>
+            </Hidden>
         </div>
     )
 }
 
 export default Sidebar
+
+
+//===============================================================================================================
+//import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
+//import ChevronRightIcon from '@material-ui/icons/ChevronRight'
+//import { useTheme } from '@material-ui/core/styles'
+//import clsx from 'clsx'
+
+//IconButton,
+
+//const theme = useTheme()
+
+//const [state, setState] = React.useState(false)  //Doubts about intial value and suitability of the statement
+
+    // const handleDrawerOpen = () => {
+    //     setOpen(true);
+    // }
+    
+    // const handleDrawerClose = () => {
+    //     setOpen(false);
+    // };
+
+    // const toggleDrawer = (anchor, open) => (event) => {
+    //     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+    //       return;
+    //     }
+    //     setState({ ...state, [anchor]: open });
+// };
+
+//   className={clsx(classes.list, {
+        //     [classes.fullList]: anchor === 'top' || anchor === 'bottom',
+        //   })}
+        //   role="presentation"
+        //   onClick={toggleDrawer(anchor, false)}
+        //   onKeyDown={toggleDrawer(anchor, false)}
+
+//open={open}
+
+/* <div className={classes.drawerHeader}>
+                    <IconButton onClick={handleDrawerClose}>
+                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                    </IconButton>
+    </div>
+    <Divider/> */

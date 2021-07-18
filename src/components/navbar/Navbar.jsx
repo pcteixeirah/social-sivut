@@ -12,7 +12,7 @@ import {
     //Link, 
     //InputBase, 
     IconButton,
-    Hidden
+    Hidden,
 } from '@material-ui/core'
 
 //import SearchIcon from '@material-ui/icons/Search'
@@ -25,6 +25,7 @@ import FaceIcon from '@material-ui/icons/Face'
 
 import { fade } from '@material-ui/core/styles'
 import { ReactComponent as Sivut } from './assets/blocks/sivut_1.svg'
+import Sidebar from './Sidebar'
 
 import { MDBCol, MDBIcon } from "mdbreact"
 
@@ -94,9 +95,9 @@ const Navbar = (props) => {
 
     const [open, setOpen] = React.useState(false)
     
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    }
+    // const handleDrawerOpen = () => {
+    //     setOpen(true);
+    // }
 
     return (
         <div>
@@ -114,12 +115,13 @@ const Navbar = (props) => {
                             <Hidden smUp>
                                 <IconButton
                                     aria-label="openDrawer"
-                                    onClick={handleDrawerOpen}
+                                    onClick={() => setOpen(true)}
                                     edge="start"
                                     className={clsx(classes.menuButton, open && classes.hide)}
                                 >
                                     <Sivut/>
                                 </IconButton>
+                                <Sidebar open={open}/>
                             </Hidden>
                             
                             <MDBCol md="6">
