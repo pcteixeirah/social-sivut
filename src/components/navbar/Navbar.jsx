@@ -10,7 +10,7 @@ import {
     //Typography, 
     makeStyles, 
     //Link, 
-    InputBase, 
+    //InputBase, 
     IconButton,
     Hidden
 } from '@material-ui/core'
@@ -26,7 +26,9 @@ import FaceIcon from '@material-ui/icons/Face'
 import { fade } from '@material-ui/core/styles'
 import { ReactComponent as Sivut } from './assets/blocks/sivut_1.svg'
 
-import { MDBCol, MDBIcon } from "mdbreact";
+import { MDBCol, MDBIcon } from "mdbreact"
+
+//===============================================================================================================
 
 const useStyles = makeStyles(theme => ({
     offset: theme.mixins.toolbar,
@@ -77,6 +79,7 @@ const useStyles = makeStyles(theme => ({
         },
     },
 }))
+//===============================================================================================================
 
 const Navbar = (props) => {
 
@@ -89,7 +92,7 @@ const Navbar = (props) => {
             })
     }
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false)
     
     const handleDrawerOpen = () => {
         setOpen(true);

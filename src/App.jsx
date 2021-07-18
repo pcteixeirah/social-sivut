@@ -3,14 +3,23 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Admin from './components/admin/Admin'
 import Login from './components/login/Login'
 import Navbar from './components/navbar/Navbar'
+import Sidebar from './components/navbar/Sidebar'
 import Reset from './components/login/Reset'
 import Profile from './components/admin/Profile'
+import {makeStyles} from '@material-ui/core'
 
 import { auth } from './firebase'
+//import { NavigationContainer } from '@react-navigation/native'
 
+const useStyles = makeStyles({
+  root: {
+    display: 'flex'
+  },
+})
 
 function App() {
 
+  const classes = useStyles()
   const [firebaseUser, setFirebaseUser] = React.useState(false)
 
   React.useEffect(() => {
@@ -28,10 +37,14 @@ function App() {
 
   return firebaseUser !== false ? (
     <Router>
-      <div className="container">
+      <div className={classes.root}>
+        <Sidebar/>
         <Navbar firebaseUser={firebaseUser} />
+        {/* <NavigationContainer>
+          <Sidebar/>
+        </NavigationContainer> */}
         <Switch>
-          <Route path="/" exact>
+          <Route exact path="/">
             inicio...
           </Route>
 

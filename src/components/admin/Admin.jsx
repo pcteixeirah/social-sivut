@@ -2,6 +2,7 @@ import React from 'react'
 import { auth } from '../../firebase'
 import { withRouter } from 'react-router-dom'
 import Firestore from '../Firestore'
+//import Sidebar from '../navbar/Sidebar'
 
 const Admin = (props) => {
     const [user, setUser] = React.useState(null)
@@ -18,6 +19,7 @@ const Admin = (props) => {
 
     return (
         <div className="mt-5">
+            {/* <Sidebar/> */}
             <h3 className="text-center">
                 Ruta protegida
             </h3>
