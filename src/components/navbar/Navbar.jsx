@@ -22,6 +22,7 @@ import HomeIcon from '@material-ui/icons/Home'
 //import PublicIcon from '@material-ui/icons/Public'
 import EmojiEventsIcon from '@material-ui/icons/EmojiEvents'
 import FaceIcon from '@material-ui/icons/Face'
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 
 import { fade } from '@material-ui/core/styles'
 import { ReactComponent as Sivut } from './assets/blocks/sivut_1.svg'
@@ -79,6 +80,14 @@ const useStyles = makeStyles(theme => ({
             width: '30ch',
         },
     },
+    drawerHeader: {
+        display: 'flex',
+        alignItems: 'center',
+        padding: theme.spacing(0, 1),
+        // necessary for content to be below app bar
+        ...theme.mixins.toolbar,
+        justifyContent: 'flex-end',
+    },
 }))
 //===============================================================================================================
 
@@ -100,7 +109,7 @@ const Navbar = (props) => {
     // }
 
     return (
-        <div>
+        <>
             <AppBar>
                 <Toolbar>
                     <div className={classes.title}>
@@ -121,7 +130,15 @@ const Navbar = (props) => {
                                 >
                                     <Sivut/>
                                 </IconButton>
-                                <Sidebar open={open}/>
+                                <Sidebar state={open}>
+                                    <>
+                                        <div className={classes.drawerHeader}>
+                                            <IconButton onClick={() => setOpen(false)}>
+                                                <ChevronLeftIcon />
+                                            </IconButton>
+                                        </div>
+                                    </>
+                                </Sidebar>
                             </Hidden>
                             
                             <MDBCol md="6">
@@ -201,7 +218,7 @@ const Navbar = (props) => {
             </AppBar>
 
             <div className={classes.offset}></div>
-        </div>
+        </>
     )
 }
 

@@ -1,8 +1,11 @@
 import React from 'react'
 import InboxIcon from '@material-ui/icons/MoveToInbox'
 import MailIcon from '@material-ui/icons/Mail'
+// import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
+// import  clone from 'lodash/clone'
 import {
     Divider, 
+    //IconButton,
     List, 
     ListItem, 
     makeStyles, 
@@ -50,46 +53,47 @@ const useStyles = makeStyles(theme => ({
 const Sidebar = (props) => {
 
     const classes = useStyles()
-    //const [open, setOpen] = React.useState(false)
     
     const list = () => (
-        <div>
-          <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-        </div>
-    );
+        <>
+            <List>
+                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                <ListItem button key={text}>
+                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                    <ListItemText primary={text} />
+                </ListItem>
+                ))}
+            </List>
+            <Divider />
+            <List>
+                {['All mail', 'Trash', 'Spam'].map((text, index) => (
+                <ListItem button key={text}>
+                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                    <ListItemText primary={text} />
+                </ListItem>
+                ))}
+            </List>
+        </>
+    )
 
     return (
-        <div>
+        <>
             <Hidden smUp>
                 <Drawer
                     className={classes.drawer}
                     variant="temporary"
                     anchor="left"
-                    open={props.open}
+                    open={props.state}
                     classes={{
                         paper: classes.drawerPaper,
                     }}
                 >
+                    {props.children}
+                    
                     <List>{list()}</List>
                 </Drawer>
             </Hidden>
-        </div>
+        </>
     )
 }
 
@@ -97,14 +101,12 @@ export default Sidebar
 
 
 //===============================================================================================================
-//import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 //import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 //import { useTheme } from '@material-ui/core/styles'
 //import clsx from 'clsx'
 
-//IconButton,
-
 //const theme = useTheme()
+//const [open, setOpen] = React.useState(false)
 
 //const [state, setState] = React.useState(false)  //Doubts about intial value and suitability of the statement
 
@@ -132,9 +134,5 @@ export default Sidebar
 
 //open={open}
 
-/* <div className={classes.drawerHeader}>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                    </IconButton>
-    </div>
+/* 
     <Divider/> */
