@@ -130,7 +130,11 @@ const Navbar = (props) => {
                                 >
                                     <Sivut/>
                                 </IconButton>
-                                <Sidebar state={open}>
+                                <Sidebar
+                                    state={open} 
+                                    firebaseUser={props.firebaseUser}
+                                    logout = {cerrarSesion()}
+                                >
                                     <>
                                         <div className={classes.drawerHeader}>
                                             <IconButton onClick={() => setOpen(false)}>

@@ -1,11 +1,17 @@
 import React from 'react'
 import InboxIcon from '@material-ui/icons/MoveToInbox'
 import MailIcon from '@material-ui/icons/Mail'
+import { NavLink } from 'react-router-dom'
+import HomeIcon from '@material-ui/icons/Home'
+import EmojiEventsIcon from '@material-ui/icons/EmojiEvents'
+import FaceIcon from '@material-ui/icons/Face'
+import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew'
+import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 // import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 // import  clone from 'lodash/clone'
 import {
     Divider, 
-    //IconButton,
+    IconButton,
     List, 
     ListItem, 
     makeStyles, 
@@ -57,12 +63,51 @@ const Sidebar = (props) => {
     const list = () => (
         <>
             <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                <ListItem button key={text}>
-                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                    <ListItemText primary={text} />
-                </ListItem>
-                ))}
+                <NavLink exact to="/">
+                    <ListItem button key="home">
+                            <ListItemIcon><HomeIcon fontSize="large"/></ListItemIcon>
+                            <ListItemText primary="Home" />
+                    </ListItem>
+                </NavLink>
+
+                {
+                    props.firebaseUser !== null ? (
+                        <NavLink to="/admin">
+                            <ListItem button key="admin">
+                                <ListItemIcon><EmojiEventsIcon fontSize="large"/></ListItemIcon>
+                                <ListItemText primary="Admin" />
+                            </ListItem>
+                        </NavLink>
+                    ) : null
+                }
+
+                {
+                    props.firebaseUser !== null ? (
+                        <NavLink to="/profile">
+                            <ListItem button key="profile">
+                                <ListItemIcon><FaceIcon fontSize="large"/></ListItemIcon>
+                                <ListItemText primary="Profile" />
+                            </ListItem>
+                        </NavLink>
+                    ) : null
+                }
+
+                {
+                    props.firebaseUser !== null ? (
+                        <ListItem button key="logout" onClick={() => props.logout}>
+                            <ListItemIcon><PowerSettingsNewIcon fontSize="large"/></ListItemIcon>
+                            <ListItemText primary="Logout" />
+                        </ListItem>
+                    ) : (
+                        <NavLink to="/login">
+                            <ListItem button key="login">
+                                <ListItemIcon><AccountCircleIcon fontSize="large"/></ListItemIcon>
+                                <ListItemText primary="Login" />
+                            </ListItem>
+                        </NavLink>
+                    )
+                }
+
             </List>
             <Divider />
             <List>
@@ -136,3 +181,10 @@ export default Sidebar
 
 /* 
     <Divider/> */
+
+    // {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => ())}
+
+    // <ListItem button key={text}>
+    //     <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+    //     <ListItemText primary={text} />
+    // </ListItem>
