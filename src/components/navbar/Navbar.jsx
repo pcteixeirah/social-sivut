@@ -133,7 +133,7 @@ const Navbar = (props) => {
                                 <Sidebar
                                     state={open} 
                                     firebaseUser={props.firebaseUser}
-                                    logout = {cerrarSesion()}
+                                    cerrarSesion={() => cerrarSesion()}
                                 >
                                     <>
                                         <div className={classes.drawerHeader}>

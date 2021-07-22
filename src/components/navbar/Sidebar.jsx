@@ -94,7 +94,7 @@ const Sidebar = (props) => {
 
                 {
                     props.firebaseUser !== null ? (
-                        <ListItem button key="logout" onClick={() => props.logout}>
+                        <ListItem button key="logout" onClick={props.cerrarSesion}>
                             <ListItemIcon><PowerSettingsNewIcon fontSize="large"/></ListItemIcon>
                             <ListItemText primary="Logout" />
                         </ListItem>
