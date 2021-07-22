@@ -20,6 +20,7 @@ const Admin = (props) => {
     return (
         <div className="mt-5 container">
             {/* <Sidebar/> */}
+            <hr/>
             <h3 className="text-center">
                 Ruta protegida
             </h3>

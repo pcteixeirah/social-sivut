@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import Admin from './components/admin/Admin'
+import Admin from './components/pages/Admin'
 import Login from './components/login/Login'
 import Navbar from './components/navbar/Navbar'
 import Sidebar from './components/navbar/Sidebar'
 import Reset from './components/login/Reset'
-import Profile from './components/admin/Profile'
+import Profile from './components/pages/Profile'
 import {makeStyles} from '@material-ui/core'
 
 import { auth } from './firebase'
