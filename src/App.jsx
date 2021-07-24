@@ -10,7 +10,7 @@ import Profile from './components/pages/Profile'
 
 import {makeStyles} from '@material-ui/core'
 import { MuiThemeProvider } from '@material-ui/core/styles'
-import theme from './themeConfig.js'
+// import theme from './themeConfig.js'
 
 import { auth } from './firebase'
 //import { NavigationContainer } from '@react-navigation/native'
@@ -40,7 +40,7 @@ function App() {
 
 
   return firebaseUser !== false ? (
-    <MuiThemeProvider theme={theme}>
+    // <MuiThemeProvider theme={theme}>
       <Router>
         <div className={classes.root}>
           <Sidebar/>
@@ -73,7 +73,7 @@ function App() {
 
         </div>
       </Router>
-    </MuiThemeProvider>
+    // </MuiThemeProvider>
 
   ) : (
     <div class="d-flex justify-content-center m-5">
