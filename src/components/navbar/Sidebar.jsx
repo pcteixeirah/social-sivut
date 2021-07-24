@@ -85,7 +85,7 @@ const Sidebar = (props) => {
                     props.firebaseUser !== null ? (
                         <NavLink to="/profile">
                             <ListItem button key="profile">
-                                <ListItemIcon><FaceIcon fontSize="large"/></ListItemIcon>
+                                <ListItemIcon><AccountCircleIcon fontSize="large"/></ListItemIcon>
                                 <ListItemText primary="Profile" />
                             </ListItem>
                         </NavLink>

@@ -1,12 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
 import Admin from './components/pages/Admin'
 import Login from './components/login/Login'
 import Navbar from './components/navbar/Navbar'
 import Sidebar from './components/navbar/Sidebar'
 import Reset from './components/login/Reset'
 import Profile from './components/pages/Profile'
+
 import {makeStyles} from '@material-ui/core'
+import { MuiThemeProvider } from '@material-ui/core/styles'
+import theme from './themeConfig.js'
 
 import { auth } from './firebase'
 //import { NavigationContainer } from '@react-navigation/native'
@@ -36,38 +40,40 @@ function App() {
 
 
   return firebaseUser !== false ? (
-    <Router>
-      <div className={classes.root}>
-        <Sidebar/>
-        <Navbar firebaseUser={firebaseUser} />
-        {/* <NavigationContainer>
+    <MuiThemeProvider theme={theme}>
+      <Router>
+        <div className={classes.root}>
           <Sidebar/>
-        </NavigationContainer> */}
-        <Switch>
-          <Route exact path="/">
-            inicio...
-          </Route>
+          <Navbar firebaseUser={firebaseUser} />
+          {/* <NavigationContainer>
+            <Sidebar/>
+          </NavigationContainer> */}
+          <Switch>
+            <Route exact path="/">
+              inicio...
+            </Route>
 
-          <Route path="/login">
-            <Login />
-          </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
 
-          <Route path="/admin">
-            <Admin />
-          </Route>
+            <Route path="/admin">
+              <Admin />
+            </Route>
 
-          <Route path="/reset">
-            <Reset/>
-          </Route>
+            <Route path="/reset">
+              <Reset/>
+            </Route>
 
-          <Route path="/profile">
-            <Profile/>
-          </Route>
+            <Route path="/profile">
+              <Profile/>
+            </Route>
 
-        </Switch>
+          </Switch>
 
-      </div>
-    </Router>
+        </div>
+      </Router>
+    </MuiThemeProvider>
 
   ) : (
     <div class="d-flex justify-content-center m-5">
