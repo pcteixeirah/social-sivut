@@ -110,6 +110,7 @@ const Navbar = (props) => {
 
     return (
         <>
+            {/* <div className={classes.purple}> */}
             <AppBar>
                 <Toolbar>
                     <div className={classes.title}>
@@ -194,7 +195,7 @@ const Navbar = (props) => {
                                     props.firebaseUser !== null ? (
                                         <NavLink to="/profile">
                                             <IconButton aria-label="profile">
-                                                <FaceIcon fontSize="large"/>  
+                                                <AccountCircleIcon fontSize="large"/>  
                                             </IconButton>
                                         </NavLink>
                                     ) : null
@@ -220,6 +221,7 @@ const Navbar = (props) => {
 
                 </Toolbar>
             </AppBar>
+            {/* </div> */}
 
             <div className={classes.offset}></div>
         </>

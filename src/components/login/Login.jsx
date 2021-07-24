@@ -101,6 +101,8 @@ const Login = (props) => {
 
     return (
         <div className="mt-5 container">
+            <hr />
+            <hr />
             <h3 className="text-center">
 
                 {
